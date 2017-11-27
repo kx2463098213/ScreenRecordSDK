@@ -1,8 +1,9 @@
-package com.orz.record.util;
+package com.orz.recorder.util;
 
 import android.text.TextUtils;
 
-import com.orz.record.ATest;
+
+import com.orz.recorder.ATest;
 
 import java.io.File;
 

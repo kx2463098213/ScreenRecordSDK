@@ -1,8 +1,8 @@
-package com.orz.record.util;
+package com.orz.recorder.util;
 
 import android.util.Log;
 
-import com.orz.record.ATest;
+import com.orz.recorder.ATest;
 
 /**
  * Created by Administrator on 2017/11/16.

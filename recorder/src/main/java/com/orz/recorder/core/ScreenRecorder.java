@@ -1,4 +1,4 @@
-package com.orz.record.core;
+package com.orz.recorder.core;
 
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
@@ -9,7 +9,7 @@ import android.media.MediaMuxer;
 import android.media.projection.MediaProjection;
 import android.view.Surface;
 
-import com.orz.record.util.LogUtil;
+import com.orz.recorder.util.LogUtil;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

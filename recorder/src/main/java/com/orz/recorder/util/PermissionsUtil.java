@@ -1,4 +1,4 @@
-package com.orz.record.util;
+package com.orz.recorder.util;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

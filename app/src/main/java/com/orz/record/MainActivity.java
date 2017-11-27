@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.orz.recorder.ATest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,13 +24,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        ATest.init(this);
         initVar();
     }
 
     private void initVar(){
         mBinder = ButterKnife.bind(this);
-//        ATest.init(getApplicationContext());
     }
 
     @OnClick({R.id.btn_record})
@@ -35,8 +36,13 @@ public class MainActivity extends AppCompatActivity {
         int id = view.getId();
         switch (id){
             case R.id.btn_record:
+                showSomething();
                 break;
         }
+    }
+
+    private void showSomething(){
+        Toast.makeText(this, "Don't touch me pls.", Toast.LENGTH_SHORT).show();
     }
 
     @Override

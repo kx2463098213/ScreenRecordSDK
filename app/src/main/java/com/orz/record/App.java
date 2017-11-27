@@ -2,6 +2,8 @@ package com.orz.record;
 
 import android.app.Application;
 
+import com.orz.recorder.ATest;
+
 /**
  * Created by Administrator on 2017/11/16.
  * #####################################################

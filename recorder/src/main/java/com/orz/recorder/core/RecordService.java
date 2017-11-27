@@ -1,4 +1,4 @@
-package com.orz.record.core;
+package com.orz.recorder.core;
 
 import android.app.Notification;
 import android.app.Service;
@@ -10,9 +10,9 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 
-import com.orz.record.util.FileUtil;
-import com.orz.record.util.LogUtil;
-import com.orz.record.util.NotificationUtil;
+import com.orz.recorder.util.FileUtil;
+import com.orz.recorder.util.LogUtil;
+import com.orz.recorder.util.NotificationUtil;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

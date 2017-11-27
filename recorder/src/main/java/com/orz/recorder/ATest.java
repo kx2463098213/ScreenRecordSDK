@@ -1,19 +1,14 @@
-package com.orz.record;
+package com.orz.recorder;
 
-import android.Manifest;
-import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
-import android.util.Log;
 
-import com.orz.record.core.RecordService;
-import com.orz.record.core.TransparentActivity;
-import com.orz.record.util.FloatWindowManager;
-import com.orz.record.util.LogUtil;
-import com.orz.record.util.PermissionsUtil;
+import com.orz.recorder.core.RecordService;
+import com.orz.recorder.core.TransparentActivity;
+import com.orz.recorder.util.FloatWindowManager;
+import com.orz.recorder.util.LogUtil;
 
 
 /**

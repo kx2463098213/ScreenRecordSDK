@@ -1,7 +1,5 @@
-package com.orz.record.core;
+package com.orz.recorder.core;
 
-import android.app.AppOpsManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.projection.MediaProjectionManager;
@@ -15,8 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.orz.record.ATest;
-import com.orz.record.util.LogUtil;
+import com.orz.recorder.ATest;
+import com.orz.recorder.util.LogUtil;
 
 /**
  * Created by Administrator on 2017/11/17.

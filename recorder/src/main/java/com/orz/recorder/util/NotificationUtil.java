@@ -1,11 +1,12 @@
-package com.orz.record.util;
+package com.orz.recorder.util;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 
-import com.orz.record.ATest;
-import com.orz.record.R;
+import com.orz.recorder.ATest;
+import com.orz.recorder.R;
+
 
 /**
  * Created by Administrator on 2017/11/20.

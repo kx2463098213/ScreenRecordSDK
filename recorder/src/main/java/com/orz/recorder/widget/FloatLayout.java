@@ -1,4 +1,4 @@
-package com.orz.record.widget;
+package com.orz.recorder.widget;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,11 +10,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.orz.record.ATest;
-import com.orz.record.R;
-import com.orz.record.core.TransparentActivity;
-import com.orz.record.util.LogUtil;
-import com.orz.record.util.Util;
+import com.orz.recorder.ATest;
+import com.orz.recorder.R;
+import com.orz.recorder.core.TransparentActivity;
+import com.orz.recorder.util.LogUtil;
+import com.orz.recorder.util.Util;
 
 /**
  * Created by Administrator on 2017/11/20.

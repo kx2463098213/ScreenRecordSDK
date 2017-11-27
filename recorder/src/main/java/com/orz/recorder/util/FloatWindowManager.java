@@ -1,4 +1,4 @@
-package com.orz.record.util;
+package com.orz.recorder.util;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -6,8 +6,8 @@ import android.os.Build;
 import android.view.Gravity;
 import android.view.WindowManager;
 
-import com.orz.record.ATest;
-import com.orz.record.widget.FloatLayout;
+import com.orz.recorder.ATest;
+import com.orz.recorder.widget.FloatLayout;
 
 /**
  * Created by Administrator on 2017/11/20.
