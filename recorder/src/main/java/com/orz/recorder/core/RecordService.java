@@ -4,8 +4,14 @@ import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.PixelFormat;
+import android.hardware.display.DisplayManager;
+import android.media.Image;
+import android.media.ImageReader;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
@@ -15,6 +21,9 @@ import com.orz.recorder.util.LogUtil;
 import com.orz.recorder.util.NotificationUtil;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -73,12 +82,12 @@ public class RecordService extends Service {
     private void startRecordThread(){
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
-        float density = dm.density;
+        final float density = dm.density;
         final int width = dm.widthPixels;
         final int height = dm.heightPixels;
         LogUtil.i("width:" + width +", height:" + height + ", density:" + density);
 
-        String fileName = FileUtil.getStoreRootPath() + File.separator + "录制时间-" + sdf.format(new Date()) + ".mp4";
+        String fileName = FileUtil.getVideoRootPath() + File.separator + "录制时间-" + sdf.format(new Date()) + ".mp4";
         LogUtil.i("fileName：" + fileName);
         File file = new File(fileName);
         mRecorder = new ScreenRecorder(width, height,  bitrate, (int) density, mediaProjection, file.getAbsolutePath());
@@ -86,6 +95,48 @@ public class RecordService extends Service {
         LogUtil.i("record start...");
     }
 
+
+    private void capture(int width, int height, int dpi){
+        ImageReader reader = ImageReader.newInstance(width, height, PixelFormat.RGBA_8888,1);
+        if (reader == null){
+            return;
+        }
+        final String mFilePath = FileUtil.getVideoRootPath() + File.separator + "截图-" + sdf.format(new Date()) + ".png";
+        mediaProjection.createVirtualDisplay("Capture", width, height, dpi,
+                DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, reader.getSurface(), null, null);
+        reader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
+            @Override
+            public void onImageAvailable(ImageReader reader) {
+                Image image = reader.acquireNextImage();
+
+                int width = image.getWidth();
+                int height = image.getHeight();
+                final Image.Plane[] planes = image.getPlanes();
+                final ByteBuffer buffer =  planes[0].getBuffer();
+                int pixelStride = planes[0].getPixelStride();
+                int rowStride = planes[0].getRowStride();
+                int rowPadding = rowStride - pixelStride * width;
+                Bitmap bitmap = Bitmap.createBitmap(width + rowPadding/pixelStride, height, Bitmap.Config.ARGB_8888);
+                bitmap.copyPixelsFromBuffer(buffer);
+                bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height);
+                image.close();
+
+                File file = new File(mFilePath);
+                if (!file.exists()){
+                    try {
+                        file.createNewFile();
+                        FileOutputStream fos = new FileOutputStream(file);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                        fos.flush();
+                        fos.close();
+                        LogUtil.i("capture finish.");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, null);
+    }
 
     @Nullable
     @Override

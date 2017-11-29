@@ -71,7 +71,7 @@ public class ScreenRecorder extends Thread {
         }finally {
             release();
         }
-        
+
     }
 
     private void recordVirtualDisplay(){

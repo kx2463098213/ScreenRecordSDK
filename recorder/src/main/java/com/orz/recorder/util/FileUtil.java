@@ -14,9 +14,14 @@ import java.io.File;
 
 public class FileUtil {
 
-    private static String gStoragePath = null;
+    private static String gVideoPath = null;
+    private static String gLogFilePath = null;
 
-
+    /**
+     * 根据路径判断文件是否存在
+     * @param path
+     * @return
+     */
     public static boolean fileExists(String path){
         if (TextUtils.isEmpty(path)){
             return false;
@@ -25,27 +30,55 @@ public class FileUtil {
         return fileExists(file);
     }
 
+    /**
+     * 判断文件是否存在
+     * @param file
+     * @return
+     */
     public static boolean fileExists(File file){
         return file != null && file.exists();
     }
 
-    public static String getStoreRootPath(){
-        if (!TextUtils.isEmpty(gStoragePath)){
-            return gStoragePath;
+    /**
+     * 获取视频文件的存放路径
+     * @return
+     */
+    public static String getVideoRootPath(){
+        if (!TextUtils.isEmpty(gVideoPath)){
+            return gVideoPath;
         }
-        String path;
         try {
             File file = ATest.gContext.getExternalFilesDir(ATest.STORAGE_VIDEO_ROOT_PATH);
             if (!fileExists(file)){
                 file.mkdirs();
             }
-            path = file.getAbsolutePath();
-            gStoragePath = path;
+            gVideoPath = file.getAbsolutePath();
         }catch (Exception e){
             e.printStackTrace();
-            LogUtil.e("getStoreRootPath error:" + e.getLocalizedMessage());
+            LogUtil.e("getVideoRootPath error:" + e.getLocalizedMessage());
         }
-        return gStoragePath;
+        return gVideoPath;
+    }
+
+    /**
+     * 获取日志文件的存放路径
+     * @return
+     */
+    public static String getLogRootPath(){
+        if (!TextUtils.isEmpty(gLogFilePath)){
+            return gLogFilePath;
+        }
+        try {
+            File file = ATest.gContext.getExternalFilesDir(ATest.STOTAGE_LOG_ROOT_PATH);
+            if (!fileExists(file)){
+                file.mkdirs();
+            }
+            gLogFilePath = file.getAbsolutePath();
+        }catch (Exception e){
+            e.printStackTrace();
+            LogUtil.e("getLogRootPath error:" + e.getLocalizedMessage());
+        }
+        return gLogFilePath;
     }
 
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
 
+import com.orz.recorder.core.CrashHandler;
 import com.orz.recorder.core.RecordService;
 import com.orz.recorder.core.TransparentActivity;
 import com.orz.recorder.util.FloatWindowManager;
@@ -49,12 +50,15 @@ public class ATest {
             return;
         }
         gContext = context;
+        CrashHandler.getInstance().init(gContext);
         // 6.0 以上进行动态请求悬浮窗权限.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(gContext)) {
             TransparentActivity.startPermissionActivity();
         }else {
             initFloatButton();
         }
+        /*StringBuilder sb = null;
+        LogUtil.e("error:" + (sb.toString()));*/
     }
 
     public void destroy(){
